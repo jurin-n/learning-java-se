@@ -6,7 +6,7 @@ public class Shipping {
 		Size size2 = sizeFromWeight(weight);
 
 		// 大きい方を採用
-		Size size = (size1 > size2) ? size1 : size2;
+		Size size = (size1.sizeNumber() > size2.sizeNumber()) ? size1 : size2;
 
 		// sizeから価格を算出
 		return priceFromSize(size);
@@ -26,12 +26,11 @@ public class Shipping {
 		} else if (total <= 180) {
 			return Size.L;
 		}
+
+		throw new IllegalArgumentException();
 	}
 
 	private Size sizeFromWeight(int weight) {
-		if (!(weight > 0 & weight <= 30)) {
-			throw new IllegalArgumentException();
-		}
 		// 重量判定
 		if (weight <= 10) {
 			return Size.S;
@@ -40,22 +39,20 @@ public class Shipping {
 		} else if (weight <= 30) {
 			return Size.L;
 		}
+		throw new IllegalArgumentException();
 	}
 
 	private int priceFromSize(Size size) {
-		if (!(size == 1 || size == 2 || size == 3)) {
-			throw new IllegalArgumentException();
-		}
 		int price = 0;
 		// サイズ別に金額算出
 		switch (size) {
-		case Size.S:
+		case S:
 			price = 600;
 			break;
-		case Size.M:
+		case M:
 			price = 1200;
 			break;
-		case Size.L:
+		case L:
 			price = 1800;
 			break;
 		}
