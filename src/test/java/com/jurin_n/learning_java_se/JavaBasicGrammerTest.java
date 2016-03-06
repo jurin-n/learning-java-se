@@ -8,7 +8,6 @@ public class JavaBasicGrammerTest {
 
 	@Test
 	public void test() {
-		fail();
 		int a = 100;
 		long b = 312345L; //3.12345L はだめ。
 		int c = 0777;
